@@ -60,7 +60,7 @@ class Login extends CI_Controller {
 		
 		if($this->session->userdata('random')!=$this->input->post('captcha'))
 		{
-			die("1");
+			die("5");
 		}
 
 		$user = $this->gas($this->input->post('user_admin'));
