@@ -162,7 +162,7 @@ function dd(){
 		window.close();
 	}
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEuqazpfYAJOeiMcfCLcvI-nfbqkUU71Q&libraries=drawing&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq5_6tgSUmi7ukDbpAnTbQ2_ungfOEs2I&libraries=drawing&callback=initMap"
 async defer></script>
 
 </body>
