@@ -147,7 +147,7 @@ var klik = 0;
 $("#form_login_test").submit(function(){	
 	
 	$.post("<?php echo base_url()?>index.php/login/cek_login",$(this).serialize(),function(e){
-		//alert(e);
+		alert(e);
 		
 		if(e =='0')
 		{
