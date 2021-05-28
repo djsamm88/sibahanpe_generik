@@ -38,6 +38,7 @@
               <th>Email</th>                                    
               <th>Telp</th>           
               <th>Level</th>           
+              <th>OPD</th>           
               <th>Action</th>
               
         </tr>
@@ -63,6 +64,7 @@
                 <td>$x->user_admin</td>
                 <td>$x->email_admin</td>
                 <td>$x->telp_admin</td>
+                <td>$x->OPD</td>
                 <td>$level</td>
                 <td>
                   $btn
@@ -108,7 +110,7 @@
             <div class="col-sm-8">
               <select name="level" id="level" class="form-control">
                   <option value=""> --- pilih Level --- </option>
-                  <option value="1"><?php echo level('1')?></option>                  
+                  <option value="1"><?php echo level('1')?></option>                                    
                   <option value="3"><?php echo level('3')?></option>
               </select>
             </div>

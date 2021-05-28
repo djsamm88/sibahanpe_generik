@@ -99,7 +99,18 @@ class Absensi extends CI_Controller {
 
 	public function count_dinas_luar()
 	{
-		$q = $this->db->query("SELECT COUNT(*) AS dinas FROM tbl_dinas_luar WHERE status='pending'");
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" AND  LEFT(FID , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+		/*jika admin opd*/
+
+
+		$q = $this->db->query("SELECT COUNT(*) AS dinas FROM tbl_dinas_luar WHERE status='pending' $where");
 		if($q->result()[0]->dinas >0)
 		{
 			echo $q->result()[0]->dinas;
@@ -108,7 +119,17 @@ class Absensi extends CI_Controller {
 
 	public function count_ijin_lain()
 	{
-		$q = $this->db->query("SELECT COUNT(*) AS lain FROM tbl_cuti_lain WHERE status='pending'");
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" AND  LEFT(FID , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+		/*jika admin opd*/
+
+		$q = $this->db->query("SELECT COUNT(*) AS lain FROM tbl_cuti_lain WHERE status='pending' $where");
 		if($q->result()[0]->lain >0)
 		{
 			echo $q->result()[0]->lain;

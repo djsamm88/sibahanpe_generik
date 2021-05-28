@@ -23,7 +23,8 @@ class M_login extends CI_Model {
 								nama_admin,
 								pass_admin,
 								level,
-								status_admin
+								status_admin,
+								ID_OPD
 
 								FROM tbl_super_admin a 
 

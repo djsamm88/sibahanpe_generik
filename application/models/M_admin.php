@@ -12,7 +12,7 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 	public function m_data_admin()
 	{
-		$q = $this->db->query("SELECT a.* FROM tbl_super_admin a ");
+		$q = $this->db->query("SELECT a.*,b.OPD FROM tbl_super_admin a LEFT JOIN tbl_struktur b ON a.ID_OPD=b.ID_OPD");
 		return $q->result();
 	}
 

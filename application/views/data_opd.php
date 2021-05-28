@@ -37,7 +37,9 @@
               
               <th>No</th>
               <th width="10px">ID OPD</th>           
-              <th>OPD</th>                                   
+              <th>OPD</th>                           
+              <th>ADMIN</th>                           
+                      
               <th>Action</th>                     
               
               
@@ -58,6 +60,7 @@
                 <td>$no</td>
                 <td>$x->ID_OPD</td>
                 <td>$x->OPD</td>                
+                <td>$x->user_admin</td>                
                                          
                 
                 <td>
@@ -109,6 +112,13 @@
             <div class="col-sm-8"><input type="text" name="OPD" id="OPD" required="required" class="form-control" placeholder="FID"></div>
             <div style="clear: both;"></div><br>
 
+            <div class="col-sm-4">NIP ADMIN </div>
+            <div class="col-sm-8"><input type="text" name="user_admin" id="user_admin"  class="form-control" placeholder="NIP">
+            <small>Penting !!! Pastikan NIP sudah ada di data Staff.</small>
+            </div>
+
+            <div style="clear: both;"></div><br>
+
         
         
 
@@ -140,6 +150,7 @@ function edit(id)
     $("#id").val(e[0].id);
     $("#OPD").val(e[0].OPD);
     $("#ID_OPD").val(e[0].ID_OPD);
+    $("#user_admin").val(e[0].user_admin);
 
     
   })

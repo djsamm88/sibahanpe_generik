@@ -90,6 +90,7 @@ class Login extends CI_Controller {
 					$sess_data['email_admin']	= $sess->email_admin;		
 					//$sess_data['id_desa']		= $sess->id_desa;
 					$sess_data['nama_admin']	= $sess->nama_admin;
+					$sess_data['ID_OPD']	= $sess->ID_OPD;
 
 					$this->session->set_userdata($sess_data);
 					$ret= '1';

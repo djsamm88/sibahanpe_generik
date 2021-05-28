@@ -27,8 +27,9 @@
           </div>
         </div> 
         <div class="box-body">
-              
+              <!--
               <button class="btn btn-primary" id="tambah_data"  onclick="tambah()">Tambah Data</button> 
+            -->
               
 <div class="table-responisve">
 <table id="tbl_datanya" class="table  table-striped table-bordered"  cellspacing="0" width="100%">

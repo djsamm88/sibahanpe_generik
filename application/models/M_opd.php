@@ -12,13 +12,17 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 	public function m_data()
 	{
-		$q = $this->db->query("SELECT * FROM `tbl_struktur`");
+		$q = $this->db->query("SELECT a.*,b.user_admin FROM `tbl_struktur` a 
+								LEFT JOIN tbl_super_admin b ON a.ID_OPD=b.ID_OPD
+							");
 		return $q->result();
 	}
 
 	public function m_by_id($id)
 	{
-		$q = $this->db->query("SELECT * FROM `tbl_struktur` WHERE id='$id'");
+		$q = $this->db->query("SELECT a.*,b.user_admin FROM `tbl_struktur` a 
+								LEFT JOIN tbl_super_admin b ON a.ID_OPD=b.ID_OPD
+							WHERE a.id='$id'");
 		return $q->result();
 	}
 

@@ -14,6 +14,16 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 	public function log_absensi($tgl_awal,$tgl_akhir)
 	{
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" AND  LEFT(a.Fid , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+		/*jika admin opd*/
+
 		$q = $this->db->query("
 					SELECT a.*,STR_TO_DATE(DateTime,'%d/%m/%Y %H:%i:%s') AS formated,
 						CASE
@@ -24,7 +34,7 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 						END AS telat
 						FROM `ta_log` a 
 					WHERE STR_TO_DATE(DateTime,'%d/%m/%Y %H:%i:%s') 
-					BETWEEN '$tgl_awal' AND '$tgl_akhir'
+					BETWEEN '$tgl_awal' AND '$tgl_akhir'  $where
 					ORDER BY id DESC
 			");
 		$x = $q->result();
@@ -108,13 +118,23 @@ WHERE a.NIK='$nip'
 
 	public function dinas_luar($tgl_awal,$tgl_akhir)
 	{
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" AND  LEFT(a.FID , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+
 		$q = $this->db->query("
 					SELECT a.*,b.Nama,b.NIK
 					 FROM tbl_dinas_luar a
 					 LEFT JOIN hr_staff_info b 
 					 ON a.FID=b.FID
 					WHERE a.tanggal
-					BETWEEN '$tgl_awal' AND '$tgl_akhir'
+					BETWEEN '$tgl_awal' AND '$tgl_akhir' 
+					$where
 					ORDER BY a.id DESC
 			");
 		$x = $q->result();
@@ -170,13 +190,22 @@ WHERE a.NIK='$nip'
 
 	public function cuti_lain($tgl_awal,$tgl_akhir)
 	{
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" AND  LEFT(a.FID , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+
 		$q = $this->db->query("
 					SELECT a.*,b.Nama,b.NIK
 					 FROM tbl_cuti_lain a
 					 LEFT JOIN hr_staff_info b 
 					 ON a.FID=b.FID
 					WHERE a.tanggal
-					BETWEEN '$tgl_awal' AND '$tgl_akhir'
+					BETWEEN '$tgl_awal' AND '$tgl_akhir' $where
 					ORDER BY a.id DESC
 			");
 		$x = $q->result();

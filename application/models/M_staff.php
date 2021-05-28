@@ -12,6 +12,15 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 	public function m_data()
 	{
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" WHERE LEFT(a.Fid , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+
 		$q = $this->db->query("SELECT a.*,b.OPD,c.nama_sift,c.masuk,c.keluar,d.nama_lokasi,d.id_lokasi
 				FROM `hr_staff_info` a 
 				LEFT JOIN tbl_struktur b ON LEFT(a.FID,3)=b.ID_OPD
@@ -20,6 +29,7 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 					SELECT a.nip,b.nama_lokasi,a.id_lokasi FROM `tbl_set_lokasi` a 
 					LEFT JOIN tbl_lokasi b ON a.id_lokasi=b.id
 				)d ON a.NIK=d.nip
+				$where
 				");
 		return $q->result();
 	}

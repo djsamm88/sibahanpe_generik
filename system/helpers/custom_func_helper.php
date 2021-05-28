@@ -57,6 +57,7 @@ function level($int)
 {
 	$a = array(
 			'1' => "Super Admin", 			 
+      '2' => "Admin OPD", 
 			'3' => "Staff" 
 			);
 	return $a[$int];

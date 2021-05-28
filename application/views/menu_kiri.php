@@ -263,6 +263,97 @@
         <?php }?>
 
 
+
+
+
+        <?php 
+        //admin OPD
+        if($this->session->userdata('level')=='2')
+        {
+        ?>
+
+       <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/staff/data','Master Staff');return false;">
+                <i class="fa fa-link"></i> <span>Data Staff</span>
+              </a>
+            </li>
+
+            
+
+
+        <li class="treeview">
+          
+          <a href="#"><i class="fa fa-gear"></i> <span>Pengaturan Shift <span class="label label-danger pull-right badge_barang"></span></span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+
+          <ul class="treeview-menu">
+             <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/staff/set_shift','Set Shift');return false;">
+                <i class="fa fa-link"></i> <span>Set Shift</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/lokasi/form_set_lokasi','Set Lokasi');return false;">
+                <i class="fa fa-link"></i> <span>Set Lokasi</span>
+              </a>
+            </li>
+
+            
+            
+          </ul>
+        </li>
+
+
+
+
+
+
+
+
+
+            
+             <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/absensi/dinas_luar/?tgl_awal=<?php echo date('Y-m-').'01'?>&tgl_akhir=<?php echo date('Y-m-d',strtotime('+7 days'));?>','Dinas Luar');return false;">
+                <i class="fa fa-link"></i> <span>Dinas Luar <span class='badge badge_dinas_luar'></span></span>
+              </a>
+            </li>
+
+
+
+            
+             <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/absensi/cuti_lain/?tgl_awal=<?php echo date('Y-m-').'01'?>&tgl_akhir=<?php echo date('Y-m-d',strtotime('+7 days'));?>','Ijin Lain');return false;">
+                <i class="fa fa-link"></i> <span>Ijin Lainnya <span class='badge badge_ijin_lain'></span></span>
+              </a>
+            </li>
+
+
+            
+
+
+            
+             <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/absensi/log_absensi/?tgl_awal=<?php echo date('Y-m-').'01'?>&tgl_akhir=<?php echo date('Y-m-d',strtotime('+1 days'));?>','Log Absensi');return false;">
+                <i class="fa fa-link"></i> <span>Log Absensi</span>
+              </a>
+            </li>
+
+
+            
+             <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/absensi/form_lap_by_nip/','Lap Absensi');return false;">
+                <i class="fa fa-link"></i> <span>Lap Absensi</span>
+              </a>
+            </li>
+
+
+        <?php }?>
+
+
         
         
         <li>

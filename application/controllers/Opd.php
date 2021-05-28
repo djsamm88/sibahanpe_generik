@@ -59,13 +59,33 @@ class Opd extends CI_Controller {
 		$id = $this->input->post('id');
 		
 		$serialize = $this->input->post();
+		
+		//ambil dulu dari data staff
+		$user_admin = $serialize['user_admin'];
+		$q = $this->db->query("SELECT * FROM hr_staff_info WHERE NIK='$user_admin'");		
+		if($q->num_rows()>0)
+		{
+			$qq=$q->result()[0];
+			$ID_OPD=$serialize['ID_OPD'];
+			$this->db->query("DELETE FROM tbl_super_admin WHERE ID_OPD='$ID_OPD'");
+			$this->db->query("INSERT INTO tbl_super_admin SET 
+								user_admin='$user_admin',
+								pass_admin=md5($user_admin),
+								nama_admin='$qq->Nama',
+								level='2',
+								ID_OPD='$ID_OPD'
+				");
+		}
 
+
+		unset($serialize['user_admin']);
 		
 
 		if($id=='')
 		{
 			
 			$this->m_opd->tambah_data($serialize);
+
 			die('1');
 		}else{
 			
