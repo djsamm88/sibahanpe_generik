@@ -23,11 +23,20 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		/*jika admin opd*/
+		if($this->session->userdata('level')==2)
+		{
+			$ID_OPD = $this->session->userdata('ID_OPD');
+			$where =" WHERE  LEFT(Fid , 3)='$ID_OPD'";
+		}else{
+			$where="";
+		}
+		/*jika admin opd*/
 
-		$q_pengguna = $this->db->query("SELECT COUNT(*) AS penguna FROM hr_staff_info");
+		$q_pengguna = $this->db->query("SELECT COUNT(*) AS penguna FROM hr_staff_info $where");
 		$data['penguna'] = $q_pengguna->result()[0]->penguna;
 
-		$tbl_lokasi = $this->db->query("SELECT COUNT(*) AS lokasi FROM tbl_lokasi");
+		$tbl_lokasi = $this->db->query("SELECT COUNT(*) AS lokasi FROM tbl_lokasi ");
 		$data['lokasi'] = $tbl_lokasi->result()[0]->lokasi;
 
 
