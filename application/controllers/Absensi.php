@@ -30,7 +30,7 @@ class Absensi extends CI_Controller {
 
 	public function go_lap_by_nip()
 	{
-		$data['nik'] = $this->input->post('nik');
+		$data['nik'] = trim($this->input->post('nik'));
 		$data['bulan'] = $this->input->post('bulan');
 		$data['tahun'] = $this->input->post('tahun');
 		$this->load->view('go_lap_by_nip',$data);
@@ -251,6 +251,75 @@ class Absensi extends CI_Controller {
 		header("Expires: 0");	
 
 		$this->load->view('master_sift_xl',$data);
+		
+	}
+
+
+
+// libur
+
+
+	public function master_libur()
+	{
+		
+		$data['all'] = $this->m_absensi->master_libur();		
+		$this->load->view('master_libur',$data);
+		
+	}
+
+
+	public function master_libur_by_id($id)
+	{
+		header('Content-Type: application/json');
+		$data['all'] = $this->m_absensi->master_libur_by_id($id);
+		echo json_encode($data['all']);
+	}
+
+
+
+	public function simpan_master_libur()
+	{
+		$id = $this->input->post('id');
+		
+		$serialize = $this->input->post();
+
+		
+
+		if($id=='')
+		{
+			
+			$this->m_absensi->tambah_data_master_libur($serialize);
+			die('1');
+		}else{
+			
+			$this->m_absensi->update_data_master_libur($serialize,$id);
+			die('1');			
+
+		}
+		
+	}
+
+	public function hapus_libur($id)
+	{
+		$this->db->query("DELETE FROM master_libur WHERE id='$id'");
+	}
+
+	public function master_libur_xl()
+	{
+		$tgl_awal = $this->input->get('tgl_awal');
+		$tgl_akhir = $this->input->get('tgl_akhir');
+		$data['all'] = $this->m_absensi->master_libur($tgl_awal,$tgl_akhir);
+		$data['tgl_awal'] = $tgl_awal;
+		$data['tgl_akhir'] = $tgl_akhir;
+
+
+		$file="master_libur_xl $tgl_awal - $tgl_akhir _.xls";
+		header("Content-type: application/octet-stream");
+		header("Content-Disposition: attachment; filename=$file");
+		header("Pragma: no-cache");
+		header("Expires: 0");	
+
+		$this->load->view('master_libur_xl',$data);
 		
 	}
 

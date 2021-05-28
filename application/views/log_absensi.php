@@ -72,13 +72,17 @@
                 }else{
                   $class='danger';
                 }
+                
+                $x = explode("/", $key->image);
+                $y = explode("_", $x[1]);
+                $nip=$y[0];
              
                 echo "
                   <tr class='$class'>
                     <td>$no</td>
                     <td>$key->Fid</td>
                     
-                    <td>$key->Nama_Staff</td>
+                    <td>$key->Nama_Staff <br> $nip</td>
                     <td>".tglindo($key->formated)."</td>
                     <td>$key->Jam_Log $key->In_out</td>
                     <td>

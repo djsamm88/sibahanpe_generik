@@ -38,11 +38,12 @@ for($d=1; $d<=31; $d++)
         $total_tidak_hadir = 0;
         $total_dinas_luar = 0;
         $total_ijin_lainnya = 0;
+        $total_libur=0;
         foreach($list_date as $x)
         {
         	$no++;
         	$class='';
-        	
+        	 
 
         	$q = $this->m_absensi->lap_absensi($nik,$x);
           	$y =@$q[0];
@@ -65,6 +66,16 @@ for($d=1; $d<=31; $d++)
           		$y->shift='[Dinas Luar] '.$z->keterangan;
           		$total_dinas_luar++;
           	}
+
+            $libur = $this->m_absensi->libur_by_tgl($x);
+            $zz = @$libur[0];
+            if(count($libur)>0)
+            {
+              $class='success';
+              $y->total_telat=0;
+              $y->shift='[Libur] '.$zz->desc_libur;
+              $total_libur++;
+            }
 
 
           	$ijin_lain = $this->m_absensi->ijin_lain_by_nip($nik,$x);
@@ -121,5 +132,10 @@ for($d=1; $d<=31; $d++)
 	<tr class="info">
 		<td>Ijin Lainnya</td> <td><?php echo $total_ijin_lainnya?> Hari</td>
 	</tr>
+
+    <tr class="info">
+    <td>Libur</td> <td><?php echo $total_libur?> Hari</td>
+  </tr>
+
 </table>
 

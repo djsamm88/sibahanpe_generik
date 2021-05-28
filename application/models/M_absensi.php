@@ -137,6 +137,18 @@ WHERE a.NIK='$nip'
 	}
 
 
+	public function libur_by_tgl($tanggal)
+	{
+		$q = $this->db->query("
+					SELECT *
+					 FROM master_libur					 
+					WHERE tgl_libur='$tanggal'
+			");
+		$x = $q->result();
+		return $x;		
+	}
+
+
 
 		
 		/** dinas luar **/
@@ -222,4 +234,46 @@ WHERE a.NIK='$nip'
 		$this->db->where('id',$id);
 		$this->db->update('master_sift');
 	}
+
+
+
+
+	
+	public function master_libur()
+	{
+		$q = $this->db->query("
+					SELECT * FROM master_libur ORDER BY id DESC
+			");
+		$x = $q->result();
+		return $x;		
+	}
+	
+	
+
+	public function master_libur_by_id($id)
+	{
+		$q = $this->db->query("
+					SELECT * FROM master_libur WHERE id='$id'
+			");
+		$x = $q->result();
+		return $x;		
+	}
+
+
+
+	public function tambah_data_master_libur($serialize)
+	{
+		$this->db->set($serialize);
+		$this->db->insert('master_libur');
+	}
+
+
+	public function update_data_master_libur($serialize,$id)
+	{
+		$this->db->set($serialize);
+		$this->db->where('id',$id);
+		$this->db->update('master_libur');
+	}
+
+
 }

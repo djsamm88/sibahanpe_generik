@@ -48,6 +48,13 @@
             </li>
 
 
+        <li>
+              <a href="#" onclick="eksekusi_controller('<?php echo base_url()?>index.php/absensi/master_libur','Master Libur');return false;">
+                <i class="fa fa-link"></i> <span>Data Libur</span>
+              </a>
+            </li>
+
+
 
         <li class="treeview">
           
